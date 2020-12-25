@@ -1,0 +1,57 @@
+[
+    {
+        "name":"LiveLaunch",
+        "description":"Get live countdowns on upcoming launches from across the globe, detailed specifications on launch vehicles, as well as an AR view that lets you experience the excitement right from your desk.",
+        "imgsource":"../../public/videodemo/LiveLaunchDemo.mp4",
+        "link":"https://devpost.com/software/livelaunch",
+    },
+
+    {
+        "name":"Synthwave Site",
+        "description":"An experimental portfolio site. Inspired by Synthwave and the 80s as a whole.",
+        "imgsource":"../../public/videodemo/synthdemo.mp4",
+        "link":"https://synthwavesite.netlify.app"
+    },
+    
+    {
+        "name":"Foodster",
+        "description":"Webapp that finds recipes based off ingredients/cost etc. from an online database. Created using ReactJS",
+        "imgsource":"../../public/videodemo/foodsterdemo.mp4",
+        "link":"https://github.com/kiransuren/foodster",
+    },
+
+    {
+        "name":"Chemventory",
+        "description":"Database software aimed at assisting science departments in keeping track of their apparatus and chemicals",
+        "imgsource":"../../public/videodemo/chemventorydemo.mp4",
+        "link":"https://github.com/kiransuren/Chemventory",
+    },
+
+    {
+        "name":"GatorAccess",
+        "description":"Social Media Application that connects students and tutors in a schooling environment.",
+        "imgsource":"../../public/videodemo/gatoraccessFulldemo.mp4",
+        "link":"https://github.com/kiransuren/GatorAccess",
+    },
+
+    {
+        "name":"Islander",
+        "description":"Proof of concept Unity game using infinite terrain generation. Find the pieces of your fallen rocket and escape the planet before its too late!",
+        "imgsource":"../../public/videodemo/islanderdemo.mp4",
+        "link":"https://github.com/kiransuren/GatorAccess",
+    },
+
+    {
+        "name":"Swifty",
+        "description":"Swifty is a simple, lightweight note taking iOS app. Perfect for remembering any small pieces of information.",
+        "imgsource":"../../public/videodemo/swiftydemo.mp4",
+        "link":"https://github.com/kiransuren/Swifty",
+    },
+
+    {
+        "name":"Deadwatch",
+        "description":"A top-down shooter game created using python and pygame.",
+        "imgsource":"../../public/videodemo/deadwatchdemo.mp4",
+        "link":"https://github.com/kiransuren/deadwatch",
+    }
+]

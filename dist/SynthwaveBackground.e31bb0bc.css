@@ -1,0 +1,266 @@
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+}
+
+#primary-div{
+  position: absolute;
+  background-color: black;
+}
+
+
+#exmode{
+  position: absolute;
+  background-color: black;
+}
+
+
+.spinner {
+  background-color: black;
+  margin: 100px auto;
+  width: 50px;
+  height: 40px;
+  text-align: center;
+  font-size: 10px;
+/*   position: absolute;
+  left: 50%;
+  top: 25%; */
+  position: absolute;
+  margin: auto;
+  top: 45%;
+  left: 25%;
+  width: 50%;
+  margin: 0 auto;
+}
+
+#spinOver{
+  width: 100%;
+  height: 100%;
+}
+#loadText{
+  background-color: black;
+  margin: 0;
+  color: rgb(51, 255, 0);
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-align: center;
+}
+.loadText{
+  background-color: black;
+  margin: 0;
+  color: rgb(51, 255, 0);
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.spinner > div {
+  background-color: rgb(51, 255, 0);
+  height: 40px;
+  width: 6px;
+  display: inline-block;
+  margin: 0rem 0.25rem;
+  
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }  
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% { 
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% { 
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+#aud{
+  position:absolute;
+  bottom:1%;
+  right:2%;
+/*   left: 2%;
+  top: 1%; */
+  z-index: 200;
+  display: flex;
+  flex-direction: column-reverse;
+  font-family: 'Source Code Pro', monospace;
+}
+
+#music-cred{
+  margin-left: 3%;
+  z-index: 200;
+  color: rgb(0, 255, 21);
+  font-family: 'Source Code Pro', monospace;
+}
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#root {
+}
+
+#mainCanvas{
+    position: absolute; width: 100%; height: 100%; overflow: hidden;
+    z-index: 10;
+}
+
+
+#overlay{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    display: block;
+    height: 50vh;
+}
+
+#titleOverlay{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    top: 0;
+    background-color: rgba(255, 0, 0, 0);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+#titleparent{
+    color: #00fc0d;
+    display: block;
+    padding-bottom: 52vh;
+    /*animation: 3s pulse;*/
+}
+
+#tagline{
+    color: #03b1fc;
+    font-size: 2.5vh;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    height: 1.8vh;
+    letter-spacing: 5px;
+    /*text-align: center;*/
+}
+
+#title{
+    font-size: 1.8vh;
+    margin: 0;
+    padding: 0;
+}
+
+@keyframes pulse {
+    0% {
+      transform: scale3d(1, 1, 1);
+      color:#00fc0d;
+    }
+    50%{
+        transform: scale3d(1.3, 1.3, 1.3);
+        color:#09b4ed;
+    }
+    100% {
+        transform: scale3d(1, 1, 1);
+      color:#00fc0d;
+    }
+}
+#navbarExperimental{
+    position: absolute;
+    z-index: 11;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 10rem 0rem 0rem;
+}
+
+
+.navbutton{
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 400;
+    font-size: 1.2vw;
+    border: 0;
+    display: inline;
+    float: none;
+    color: white;
+    background-color: rgba(0,0,0,0);
+    /*padding: 5px;*/
+    width: 11vw;
+    height: 100%;
+    margin: 0 0.5rem 0 0.5rem;
+    outline:none;
+} 
+
+.navbutton:hover{
+    border: 2px white solid;
+}
+
+.contacts{
+    width: 3vw;
+    height: 3vw;
+    margin: 0rem 1rem;
+}
+
+#contactButtons{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+/*# sourceMappingURL=/SynthwaveBackground.e31bb0bc.css.map */

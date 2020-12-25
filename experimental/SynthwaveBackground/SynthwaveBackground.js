@@ -355,18 +355,19 @@ const MainScene = ({cPage, api}) =>{
             <Suspense fallback={null}>
               <Monolith radius={30} resolution={10}/>
             </Suspense>
-            <Suspense fallback={null}>
-              <About3D api={api}/>
-            </Suspense>
-            <Suspense fallback={null}>
-              <Project3D api={api} />
-            </Suspense>
-            <Suspense fallback={null}>
-              <Experience3D api={api}/>
-            </Suspense>
     </scene>
   );
 }
+/*
+<Suspense fallback={null}>
+<About3D api={api}/>
+</Suspense>
+<Suspense fallback={null}>
+<Project3D api={api} />
+</Suspense>
+<Suspense fallback={null}>
+<Experience3D api={api}/>
+</Suspense> */
 
 const SynthwaveBackground = (props) => {
   const api = useContext(MainContext);
