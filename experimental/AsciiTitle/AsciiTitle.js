@@ -3,7 +3,6 @@ import {useSpring, animated} from 'react-spring';
 import './AsciiTitle.css'
 import MainContext from '../../MainContext'
 import {text, font} from '../../metadata';
-require('dotenv').config()
 
 const AsciiTitle = () => {
   const api = useContext(MainContext);
