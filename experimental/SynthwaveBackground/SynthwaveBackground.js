@@ -1,24 +1,16 @@
 //Module Imports
-import React, {useRef, useState, Suspense,useEffect, useContext} from 'react'
+import React, {useRef, useState, Suspense,useEffect} from 'react'
 import { extend as applyThree, Canvas, useFrame, useThree, useLoader } from 'react-three-fiber'
 import * as THREE from 'three';
-import MainContext from '../../MainContext'
 //GLTF Loader and models to be loaded
 import deloreansilver from '../models/deloreansilver.glb'
 import mountains from '../models/synthwavemountainsV1.glb'
-
 import aboutneonsign from '../models/aboutNeonsignV1.glb'
 import projectneonsign from '../models/projectNeonsignV1.glb'
 import experienceneonsign from '../models/experienceNeonsignV1.glb'
-
 import { GLTFLoader } from '../../loaders/gltfloader'
-
+//Stylesheet imports
 import "./SynthwaveBackground.css";
-
-
-//React Routes
-
-//React Components
 
 //Postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
@@ -90,8 +82,6 @@ function Delorean() {
 
   useEffect(()=>{document.onkeydown = checkKey;},[])
 
-  useEffect(()=>{
-  })
   useFrame(({ clock, camera }) => {
     if(sc.position.z < (-20)){
         //speed = -speed;
@@ -100,14 +90,14 @@ function Delorean() {
     }else if(sc.position.z > 0){
         carspeed = -carspeed;
   }
-    
-    if(sc.position.x < -10){
+    const barrierX = 10
+    if(sc.position.x < -barrierX){
       //speed = -speed;
       setPlayerSpeedZ(0);
-      sc.position.x = -10;
+      sc.position.x = -barrierX;
       //sphere.material.color.setHex(randomColourGenerator());
-    }else if(sc.position.x > 10){
-      sc.position.x = 10;
+    }else if(sc.position.x > barrierX){
+      sc.position.x = barrierX;
       setPlayerSpeedZ(0);
     }
     
@@ -162,100 +152,6 @@ const cameraRotate = (camera,b) =>{
   }
   return false;
 }
-
-function About3D({ api }) {
-  const gltf = useLoader(THREE.GLTFLoader, aboutneonsign);
-  const sc = gltf.scene;
-  const { camera } = useThree();
-  const destVec = new THREE.Vector3(-50, 10,-50);
-  const rotVec = new THREE.Vector3(0,1,0);
-  const moveCamera = (e) =>{
-    if(api.currentPage() === "ABT"){
-      api.setPriorPage(api.currentPage());
-      api.setCurrentPage("HOME");
-    }else{
-      api.setPriorPage(api.currentPage());
-      api.setCurrentPage("ABT");
-    }
-    //console.log('clickAbout');
-    camera.position.set(0,10,0);
-  }
-  
-  useFrame(() => {
-    //console.log(rotVec)
-    //console.log(camera.rotation);
-   if(api.currentPage() === "ABT"){
-    cameraRotate(camera, rotVec);
-    cameraShift(camera,destVec);
-   }   
-   else if(api.currentPage() === "HOME" && api.priorPage() === "ABT"){
-    cameraRotate(camera, rotO);
-    cameraShift(camera,posO);
- }
-  });
-  return <primitive onClick={moveCamera} object={sc} position={[-60, 2.5,-60]} rotation={[Math.PI/2,0,-1]} scale={[scale,scale,scale]}/>
-}
-
-function Project3D({ api }) {
-  const gltf = useLoader(THREE.GLTFLoader, projectneonsign);
-  const sc = gltf.scene;
-  const { camera } = useThree();
-  const destVec = new THREE.Vector3(0, 5,-40);
-  const rotVec = new THREE.Vector3(0,0,0);
-  const moveCamera = (e) =>{
-    if(api.currentPage() ==="PROJ"){
-      api.setCurrentPage("HOME");
-    }else{
-      api.setCurrentPage("PROJ");
-    }
-    camera.position.set(0,5,0);
-  }
-  useFrame(() => {
-   if(api.currentPage() === "PROJ"){
-    cameraRotate(camera, rotVec);
-    cameraShift(camera,destVec);
-   }   
-   else if(api.currentPage() === "HOME" && api.priorPage() === "PROJ"){
-    cameraRotate(camera, rotO);
-    cameraShift(camera,posO);
- }
-  });
-  return <primitive onClick={moveCamera} object={sc} position={[0, 2.5, -60]} rotation={[Math.PI/2,0,0]} scale={[scale,scale,scale]}/>
-}
-
-function Experience3D({ api }) {
-  const gltf = useLoader(THREE.GLTFLoader, experienceneonsign);
-  const sc = gltf.scene;
-  const { camera } = useThree();
-  const destVec = new THREE.Vector3(45, 10,-50);
-  const rotVec = new THREE.Vector3(0,-1,0);
-  const moveCamera = (e) =>{
-    if(api.currentPage() ==="EXP"){
-      api.setCurrentPage("HOME");
-    }else{
-      api.setCurrentPage("EXP");
-    }
-    camera.position.set(0,10,0);
-  }
-  
-  useFrame(() => {
-/*     console.log("Rotation", camera.rotation);
-    console.log("RotO", rotO); */
-    if(api.currentPage() === "EXP"){
-      cameraRotate(camera, rotVec);
-      cameraShift(camera,destVec);
-    }   
-    else if(api.currentPage() === "HOME" && api.priorPage() === "EXP"){
-      cameraRotate(camera, rotO);
-      cameraShift(camera,posO);
-    }
-  });
-  return <primitive onClick={moveCamera} object={sc} position={[60, 2.5, -60]} rotation={[Math.PI/2,0,1]} scale={[scale,scale,scale]}/>
-}
-
-
-
-
 
 const randomColourGenerator = () => {
   return (Math.random() * 0xfffff * 1000000);
@@ -313,30 +209,19 @@ function MovingPlane() {
 //Color choices: CE13D1, 42FFFF
 
 
-const MainScene = ({cPage, api}) =>{
+const MainScene = () =>{
   const {scene} = useRef();
   const [moveUp, setMoveUp] = useState(false);
   const { camera } = useThree();
-  const parallaxFactor = 0.001;
-  //useEffect(() => document.addEventListener('mousemove', handleMouseMove));
+  const parallaxFactor = 0.01;
+  useEffect(() => document.addEventListener('mousemove', handleMouseMove));
   const handleMouseMove = (event) => {
     const wW = window.innerWidth;
     const wH = window.innerHeight;
     //console.log((event.clientX - (wW/2)) *parallaxFactor);
     camera.position.x = (event.clientX - (wW/2)) *parallaxFactor;
     //camera.position.y = ((event.clientY) * parallaxFactor * 10) + 3;
-  }/*
-  
-  useFrame(({camera})=>{
-    let cameraSpeed = 0.01
-    //console.log(camera.rotation.x);
-    if(cPage!=="HOME" && camera.rotation.x < 1){
-      camera.rotation.x += cameraSpeed;
-    }
-    if(cPage==="HOME" && camera.rotation.x > 0){
-      camera.rotation.x -= cameraSpeed;
-    }
-  });*/
+  }
 
   return(
   <scene ref={scene}>
@@ -358,20 +243,8 @@ const MainScene = ({cPage, api}) =>{
     </scene>
   );
 }
-/*
-<Suspense fallback={null}>
-<About3D api={api}/>
-</Suspense>
-<Suspense fallback={null}>
-<Project3D api={api} />
-</Suspense>
-<Suspense fallback={null}>
-<Experience3D api={api}/>
-</Suspense> */
 
 const SynthwaveBackground = (props) => {
-  const api = useContext(MainContext);
-  var cPage = api.currentPage();
   return (
     <div id="mainCanvas"> 
     <Canvas camera={{fov:75, aspect:window.innerWidth/window.innerHeight, near:0.1,far:300, position: [posO.x,posO.y,posO.z], rotation:[100,0,0]}} //30
@@ -380,7 +253,7 @@ const SynthwaveBackground = (props) => {
             gl.setClearColor(new THREE.Color('#000000'));
             camera.rotation.set(0,0,0);
             }}>
-              <MainScene cPage={cPage} api={api}/>
+              <MainScene/>
     </Canvas>
     </div>
   );

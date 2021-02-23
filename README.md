@@ -3,8 +3,9 @@ Wallpaper Version of the my SynthwaveSite https://synthwave-wallpaper.netlify.ap
 
 ## Usage:
 1. Edit metadata.js
-  * Edit text field to whatever main text you want to display
-  * Edit font field and select an available font from https://artii.herokuapp.com/fonts_list
+  * Edit maintext field to whatever main text you want to display
+  * Edit maintext_font field and select an available font from https://artii.herokuapp.com/fonts_list
+  * Edit subtext field to whatever subtext you want to display
 
 2. Run development
    ```bash
