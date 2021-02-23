@@ -4,7 +4,7 @@ Wallpaper Version of the my SynthwaveSite
 ## Usage:
 1. Edit metadata.js
   a. Edit text field to whatever main text you want to display
-  b. Edit font field to an available value from https://artii.herokuapp.com/fonts_list
+  b. Edit font field and select an available font from https://artii.herokuapp.com/fonts_list
 
 2. Run development
    ```bash
