@@ -2,7 +2,9 @@ import React, {useContext, useEffect, useState} from "react";
 import {useSpring, animated} from 'react-spring';
 import './AsciiTitle.css'
 import MainContext from '../../MainContext'
-//DONT MESS WITH THE TEMPLATE STRING
+import {text, font} from '../../metadata';
+require('dotenv').config()
+
 const AsciiTitle = () => {
   const api = useContext(MainContext);
   const [name, setName] = useState("");
@@ -12,17 +14,12 @@ const AsciiTitle = () => {
         //set({width: '100rem', from: {width: '0rem'},
         //config: {mass:10}
         //})
-  const text ="KIRAN+SURENDRAN";
-  const font ="doom";
   useEffect(() => {
     
     const Http = new XMLHttpRequest();
     const url=`https://cors-anywhere.herokuapp.com/https://artii.herokuapp.com/make?text=${text}&font=${font}`;
     Http.open("GET", url);
-    Http.setRequestHeader('Access-Control-Allow-Origin', '*');
-    Http.setRequestHeader('Access-Control-Allow-Headers', 'Origin, Content-Type, X-Auth-Token');
-    Http.setRequestHeader('Access-Control-Allow-Methods', 'Origin, Content-Type, X-Auth-Token');
-    Http.send();
+     Http.send();
 
     Http.onreadystatechange = (e) => {
       console.log(Http.responseText)
