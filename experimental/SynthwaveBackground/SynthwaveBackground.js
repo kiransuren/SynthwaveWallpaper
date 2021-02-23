@@ -1,24 +1,16 @@
 //Module Imports
-import React, {useRef, useState, Suspense,useEffect, useContext} from 'react'
+import React, {useRef, useState, Suspense,useEffect} from 'react'
 import { extend as applyThree, Canvas, useFrame, useThree, useLoader } from 'react-three-fiber'
 import * as THREE from 'three';
-import MainContext from '../../MainContext'
 //GLTF Loader and models to be loaded
 import deloreansilver from '../models/deloreansilver.glb'
 import mountains from '../models/synthwavemountainsV1.glb'
-
 import aboutneonsign from '../models/aboutNeonsignV1.glb'
 import projectneonsign from '../models/projectNeonsignV1.glb'
 import experienceneonsign from '../models/experienceNeonsignV1.glb'
-
 import { GLTFLoader } from '../../loaders/gltfloader'
-
+//Stylesheet imports
 import "./SynthwaveBackground.css";
-
-
-//React Routes
-
-//React Components
 
 //Postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
@@ -90,8 +82,6 @@ function Delorean() {
 
   useEffect(()=>{document.onkeydown = checkKey;},[])
 
-  useEffect(()=>{
-  })
   useFrame(({ clock, camera }) => {
     if(sc.position.z < (-20)){
         //speed = -speed;
@@ -219,7 +209,7 @@ function MovingPlane() {
 //Color choices: CE13D1, 42FFFF
 
 
-const MainScene = ({cPage, api}) =>{
+const MainScene = () =>{
   const {scene} = useRef();
   const [moveUp, setMoveUp] = useState(false);
   const { camera } = useThree();
@@ -232,17 +222,6 @@ const MainScene = ({cPage, api}) =>{
     camera.position.x = (event.clientX - (wW/2)) *parallaxFactor;
     //camera.position.y = ((event.clientY) * parallaxFactor * 10) + 3;
   }
-  
-  useFrame(({camera})=>{
-    let cameraSpeed = 0.01
-    //console.log(camera.rotation.x);
-    if(cPage!=="HOME" && camera.rotation.x < 1){
-      camera.rotation.x += cameraSpeed;
-    }
-    if(cPage==="HOME" && camera.rotation.x > 0){
-      camera.rotation.x -= cameraSpeed;
-    }
-  });
 
   return(
   <scene ref={scene}>
@@ -266,8 +245,6 @@ const MainScene = ({cPage, api}) =>{
 }
 
 const SynthwaveBackground = (props) => {
-  const api = useContext(MainContext);
-  var cPage = api.currentPage();
   return (
     <div id="mainCanvas"> 
     <Canvas camera={{fov:75, aspect:window.innerWidth/window.innerHeight, near:0.1,far:300, position: [posO.x,posO.y,posO.z], rotation:[100,0,0]}} //30
@@ -276,7 +253,7 @@ const SynthwaveBackground = (props) => {
             gl.setClearColor(new THREE.Color('#000000'));
             camera.rotation.set(0,0,0);
             }}>
-              <MainScene cPage={cPage} api={api}/>
+              <MainScene/>
     </Canvas>
     </div>
   );
