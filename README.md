@@ -1,5 +1,5 @@
 # SynthwaveWallpaper
-Wallpaper Version of the my SynthwaveSite
+Wallpaper Version of the my SynthwaveSite https://synthwave-wallpaper.netlify.app/
 
 ## Usage:
 1. Edit metadata.js
