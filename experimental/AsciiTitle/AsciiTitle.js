@@ -2,16 +2,30 @@ import React, {useContext, useEffect, useState} from "react";
 import {useSpring, animated} from 'react-spring';
 import './AsciiTitle.css'
 import MainContext from '../../MainContext'
-//DONT MESS WITH THE TEMPLATE STRING
+import {text, font} from '../../metadata';
+
 const AsciiTitle = () => {
   const api = useContext(MainContext);
+  const [name, setName] = useState("");
   const [toggle,setToggle] = useState(false);
   const [props, set, stop] = useSpring(() => ({opacity: 1, transform: 'translate3d(0px,0,0) scale(0) rotateX(0deg)'}));
           //setProj(!proj);
         //set({width: '100rem', from: {width: '0rem'},
         //config: {mass:10}
         //})
-  var m;
+  useEffect(() => {
+    
+    const Http = new XMLHttpRequest();
+    const url=`https://cors-anywhere.herokuapp.com/https://artii.herokuapp.com/make?text=${text}&font=${font}`;
+    Http.open("GET", url);
+     Http.send();
+
+    Http.onreadystatechange = (e) => {
+      console.log(Http.responseText)
+      setName(Http.responseText)
+    }
+  }, [])
+
   useEffect(() => {
     if(api.currentPage() != "HOME"){
       console.log("ASCII");
@@ -46,21 +60,16 @@ const AsciiTitle = () => {
   }
 
   useEffect(() => {
-       setTimeout(typeWriter, 1000);
+       //setTimeout(typeWriter, 1000);
     }, []
   );
+  
 
   return(
         <animated.div id="titleparent" style={props} className={api.currentPage()}>
           <p id="tagline"></p>
           <pre id="title">
-{`__  _______ _____            _   _      _____ _    _ _____  ______ _   _ _____  _____            _   _ 
-| |/ /_   _|  __ \\     /\\   | \\ | |    / ____| |  | |  __ \\|  ____| \\ | |  __ \\|  __ \\     /\\   | \\ | |
-| ' /  | | | |__) |   /  \\  |  \\| |   | (___ | |  | | |__) | |__  |  \\| | |  | | |__) |   /  \\  |  \\| |
-|  <   | | |  _  /   / /\\ \\ | . \` |    \\___ \\| |  | |  _  /|  __| | . \` | |  | |  _  /   / /\\ \\ | . \` |
-| . \\ _| |_| | \\ \\  / ____ \\| |\\  |    ____) | |__| | | \\ \\| |____| |\\  | |__| | | \\ \\  / ____ \\| |\\  |
-|_|\\_\\_____|_|  \\_\\/_/    \\_\\_| \\_|   |_____/ \\____/|_|  \\_\\______|_| \\_|_____/|_|  \\_\\/_/    \\_\\_| \\_|
-`}
+          {name}
           </pre>
         </animated.div>
     )

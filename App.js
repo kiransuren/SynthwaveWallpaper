@@ -2,7 +2,6 @@
 import React, { useState, useEffect} from 'react'
 import SynthwaveBackground from './experimental/SynthwaveBackground/SynthwaveBackground'
 import AsciiTitle from './experimental/AsciiTitle/AsciiTitle';
-import Navbar from './experimental/Navbar/Navbar';
 import MainContext from './MainContext'
 
 import "./styles.css";
